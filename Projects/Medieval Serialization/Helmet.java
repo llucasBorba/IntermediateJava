@@ -1,4 +1,6 @@
-public class Helmet extends Armour {
+import java.io.Serializable;
+
+public class Helmet extends Armour implements Serializable {
 
     /* Class Variables */
 

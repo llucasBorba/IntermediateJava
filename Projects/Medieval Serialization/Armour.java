@@ -1,4 +1,6 @@
-public class Armour {
+import java.io.Serializable;
+
+public class Armour implements Serializable {
 
 
         /* Class Variables */

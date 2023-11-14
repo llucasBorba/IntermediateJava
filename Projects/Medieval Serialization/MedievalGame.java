@@ -4,6 +4,7 @@ import java.util.Objects;
 public class MedievalGame {
 
     /* Instance Variables */
+    Player player;
 
     /* Main Method */
     public static void main(String[] args) {
@@ -50,6 +51,7 @@ public class MedievalGame {
 
     private void save() {
         // Add save functionality here
+        String fileName = player.getName() + ".svr";
 
     } // End of save
 

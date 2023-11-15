@@ -1,7 +1,4 @@
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.Scanner;
 import java.util.Objects;
 
@@ -59,8 +56,8 @@ public class MedievalGame {
 
         try {
             FileOutputStream userSaveFile = new FileOutputStream(fileName);
-        ObjectOutputStream playerSaver = new ObjectOutputStream(userSaveFile);
-        playerSaver.writeObject(this.player);
+            ObjectOutputStream playerSaver = new ObjectOutputStream(userSaveFile);
+             playerSaver.writeObject(this.player);
         } catch (IOException e) {
             System.err.println("There was an error saving your game, your file might not be available the next time you go to load a game." + e.getMessage());
         }
@@ -69,8 +66,20 @@ public class MedievalGame {
 
     private Player load(String playerName, Scanner console) {
         // Add load functionality here
+        Player loadedPlayer = null;
+        try {
+            FileInputStream userLoadFile = new FileInputStream(player.getName() + ".svr");
+            ObjectInputStream playerLoad = new ObjectInputStream(userLoadFile);
+            loadedPlayer = (Player) playerLoad.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("There was an error loading your game");
+            addDelay(1500);
+            System.out.println("We are going to crete a new player");
+            addDelay(2000);
+            loadedPlayer = new Player(playerName);
+        }
 
-        return new Player("Test");
+        return loadedPlayer;
     } // End of load
 
     // Adds a delay to the console, so it seems like the computer is "thinking"

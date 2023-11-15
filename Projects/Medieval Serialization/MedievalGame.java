@@ -46,8 +46,38 @@ public class MedievalGame {
     /* Instance Methods */
     private Player start(Scanner console) {
         // Add start functionality here
+        Player player;
+        Art.homeScreen();
+        System.out.println("Welcome to your latest adventure!");
+        System.out.println("Tell me traveler, have you been here before?");
+        System.out.print("   Enter 'y' to load a game, 'n' to create a new game: ");
+        String answer = console.next().toLowerCase();
 
-        return new Player("Test");
+        while (true) {
+            if (answer.equals("y")) {
+                System.out.println("So you have been here before, I knew I remember you, tell me your character name so I can see if I find your backpack");
+                player = load(console.next(), console);
+                break;
+            } else if (answer.equals("n")) {
+                System.out.println("It's your first time than, tell me your name ");
+                String nameResponse = console.next().toLowerCase();
+                while (true) {
+                    System.out.println("Welcome " + nameResponse + ", am I pronouncing that correctly? (Enter 'y' to confirm, 'n' to enter a new name");
+                    String confirme = console.next().toLowerCase();
+                    if (confirme.equals("y")) {
+                        break;
+                    }
+                    System.out.println("Okay, that might be a mistake, can you spell it for me again please?");
+                    nameResponse = console.next().toLowerCase();
+                }
+                player = new Player(nameResponse);
+                break;
+             }else{
+                System.out.print("Sorry adventurer, I only speak the common tongue. Please enter 'y' to load a game or 'n' to start a new game: ");
+                answer = console.next().toLowerCase();
+             }
+        }
+        return player;
     } // End of start
 
     private void save() {
@@ -57,7 +87,7 @@ public class MedievalGame {
         try {
             FileOutputStream userSaveFile = new FileOutputStream(fileName);
             ObjectOutputStream playerSaver = new ObjectOutputStream(userSaveFile);
-             playerSaver.writeObject(this.player);
+            playerSaver.writeObject(this.player);
         } catch (IOException e) {
             System.err.println("There was an error saving your game, your file might not be available the next time you go to load a game." + e.getMessage());
         }
@@ -66,9 +96,9 @@ public class MedievalGame {
 
     private Player load(String playerName, Scanner console) {
         // Add load functionality here
-        Player loadedPlayer = null;
+        Player loadedPlayer;
         try {
-            FileInputStream userLoadFile = new FileInputStream(player.getName() + ".svr");
+            FileInputStream userLoadFile = new FileInputStream(playerName + ".svr");
             ObjectInputStream playerLoad = new ObjectInputStream(userLoadFile);
             loadedPlayer = (Player) playerLoad.readObject();
         } catch (IOException | ClassNotFoundException e) {

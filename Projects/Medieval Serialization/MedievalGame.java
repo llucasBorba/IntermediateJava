@@ -14,19 +14,19 @@ public class MedievalGame {
 
         game.player = game.start(console);
 
-        game.addDelay(500);
+        game.addDelay(1000);
         System.out.println("\nLet's take a quick look at you to make sure you're ready to head out the door.");
         System.out.println(game.player);
 
-        game.addDelay(1000);
+        game.addDelay(2000);
         System.out.println("\nWell, you're off to a good start, let's get your game saved so we don't lose it.");
         game.save();
 
-        game.addDelay(2000);
+        game.addDelay(2500);
         System.out.println("We just saved your game...");
         System.out.println("Now we are going to try to load your character to make sure the save worked...");
 
-        game.addDelay(1000);
+        game.addDelay(1500);
         System.out.println("Deleting character...");
         String charName = game.player.getName();
         game.player = null;
@@ -38,7 +38,7 @@ public class MedievalGame {
         game.addDelay(2000);
         System.out.println("Now let's print out your character again to make sure everything loaded:");
 
-        game.addDelay(500);
+        game.addDelay(1000);
         System.out.println(game.player);
     } // End of main
 
@@ -62,8 +62,8 @@ public class MedievalGame {
                 String nameResponse = console.next().toLowerCase();
                 while (true) {
                     System.out.println("Welcome " + nameResponse + ", am I pronouncing that correctly? (Enter 'y' to confirm, 'n' to enter a new name");
-                    String confirme = console.next().toLowerCase();
-                    if (confirme.equals("y")) {
+                    String confirm = console.next().toLowerCase();
+                    if (confirm.equals("y")) {
                         break;
                     }
                     System.out.println("Okay, that might be a mistake, can you spell it for me again please?");

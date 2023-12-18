@@ -1,3 +1,5 @@
+package MedievalSerialization;
+
 import java.io.*;
 import java.util.Scanner;
 

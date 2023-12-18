@@ -1,3 +1,5 @@
+package MedievalSerialization;
+
 import java.io.Serializable;
 
 public class Player implements Serializable {
@@ -104,13 +106,13 @@ public class Player implements Serializable {
 
     @Override
     public String toString() {
-        return "\nCurrent Player: \n" +
+        return "\nCurrent MedievalSerialization.Player: \n" +
                 "Name: " + name + "\n" +
                 "Health: " + getHealth() + "\n" +
                 getCurrentWeapon() +
-                "Equipped Armour: " + "\n" +
-                "   Helmet: " + helmet +
-                "   Shirt: " + shirt +
+                "Equipped MedievalSerialization.Armour: " + "\n" +
+                "   MedievalSerialization.Helmet: " + helmet +
+                "   MedievalSerialization.Shirt: " + shirt +
                 "   Trousers: " + trouser +
                 "   Shoes: " + shoe;
     }

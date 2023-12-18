@@ -1,3 +1,5 @@
+package MedievalSerialization;
+
 import java.io.Serializable;
 
 public class Armour implements Serializable {

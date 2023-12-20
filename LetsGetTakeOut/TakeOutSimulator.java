@@ -1,6 +1,5 @@
 package LetsGetTakeOut;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TakeOutSimulator {
@@ -15,7 +14,7 @@ public class TakeOutSimulator {
         this.input = new Scanner(System.in);
     }
 
-    private <T> T getOutputOnIntInput(String userInputPrompt, IntUserInputRetriver<T> intUserInputRetriver) {
+    private <T> T getOutputOnIntInput(String userInputPrompt, IntUserInputRetriever<T> intUserInputRetriver) {
          int userInput = 0;
         do{
             try {
@@ -30,4 +29,15 @@ public class TakeOutSimulator {
         }while(true);
 
     }
+    public boolean shouldsimulate(){
+        String userPrompt = "Type 1 to keep going and 0 to finish";
+
+        IntUserInputRetriever<Boolean> intUserInputRetriever = selection -> {
+            Food lowestcost = menu.getLowestCostFood();
+            return selection == 1 && customer.getMoney() >= lowestcost.getPrice();
+        };
+        return getOutputOnIntInput(userPrompt, intUserInputRetriever);
+    }
+
+
 }

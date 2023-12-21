@@ -1,5 +1,6 @@
 package LetsGetTakeOut;
 
+import java.util.Map;
 import java.util.Scanner;
 
 public class TakeOutSimulator {
@@ -7,6 +8,7 @@ public class TakeOutSimulator {
     private Customer customer;
     private FoodMenu menu;
     private Scanner input;
+
 
     public TakeOutSimulator(Customer customer, FoodMenu menu) {
         this.customer = customer;
@@ -66,6 +68,24 @@ public class TakeOutSimulator {
             }
         };
         return getOutputOnIntInput(userPrompt, intUserInputRetriever);
+    }
+
+    public void  checkoutCustomer(ShoppingBag<Food> shoppingBag){
+        System.out.println("Processing payment...");
+        addDelay(2000);
+        int remainingMoney = customer.getMoney() - shoppingBag.getTotalPrice();
+        customer.setMoney(remainingMoney);
+        System.out.println("Your remaining money is: " + customer.getMoney());
+        addDelay(1000);
+        System.out.println("Enjoy your meal");
+    }
+
+    private void addDelay(int time) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }

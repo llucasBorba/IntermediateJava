@@ -8,7 +8,7 @@ public class Main {
         Customer lucas = new Customer("Lucas", 30);
         TakeOutSimulator take = new TakeOutSimulator(lucas, restaurant);
         take.shouldsimulate();
-        take.getMEnuSelection();
+        take.getMenuSelection();
 
 
     }

@@ -1,6 +1,5 @@
 package LetsGetTakeOut;
 
-import java.util.Map;
 import java.util.Scanner;
 
 public class TakeOutSimulator {
@@ -49,7 +48,7 @@ public class TakeOutSimulator {
         return getOutputOnIntInput(userPrompt, intUserInputRetriever);
     }
 
-    public Food getMEnuSelection(){
+    public Food getMenuSelection(){
         String userPrompt = "Today's Menu: " + "\n" + menu.toString() + "\n" + "Choose: ";
 
         IntUserInputRetriever<Food> intUserInputRetriever = selection -> menu.getFood(selection);
@@ -78,6 +77,24 @@ public class TakeOutSimulator {
         System.out.println("Your remaining money is: " + customer.getMoney());
         addDelay(1000);
         System.out.println("Enjoy your meal");
+    }
+
+    public void takeOutPrompt(){
+        ShoppingBag<Food> shoppingBag = new ShoppingBag<>();
+        int customerMoneyLeft = customer.getMoney();
+        boolean getOut = true;
+            while(getOut){
+            System.out.println("You have " + customerMoneyLeft);
+            Food customerChose = getMenuSelection();
+            if(customerMoneyLeft > customerChose.getPrice()){
+                shoppingBag.addItem(customerChose);
+                customerMoneyLeft -= customerChose.getPrice();
+            } else if (customerMoneyLeft < customerChose.getPrice()) {
+                System.out.println("Tá duro dorme, you don't have enough money");
+            }
+            getOut = isStillOrderingFood();
+            }
+            checkoutCustomer(shoppingBag);
     }
 
     private void addDelay(int time) {

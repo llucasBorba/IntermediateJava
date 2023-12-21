@@ -16,28 +16,44 @@ public class TakeOutSimulator {
 
     private <T> T getOutputOnIntInput(String userInputPrompt, IntUserInputRetriever<T> intUserInputRetriver) {
          int userInput = 0;
-        do{
+        while(true){
             try {
                 System.out.println(userInputPrompt);
-                System.out.println("Your order: ");
                 userInput = input.nextInt();
 
                return intUserInputRetriver.produceOutputOnIntUserInput(userInput);
             }catch (IllegalArgumentException e){
                 System.out.printf("%d is not a valid input. Try again", userInput);
+                input.nextLine();
             }
-        }while(true);
+        }
 
     }
     public boolean shouldsimulate(){
-        String userPrompt = "Type 1 to keep going and 0 to finish";
+        String userPrompt = "Enter 1 to CONTINUE the simulation or 0 to EXIT program";
 
         IntUserInputRetriever<Boolean> intUserInputRetriever = selection -> {
             Food lowestcost = menu.getLowestCostFood();
-            return selection == 1 && customer.getMoney() >= lowestcost.getPrice();
+            try{
+            if(selection == 1 && customer.getMoney() >= lowestcost.getPrice()){
+                return true;
+            }else if (selection == 0 || customer.getMoney() < lowestcost.getPrice()){
+                return false;
+            }
+            }catch (IllegalArgumentException e){
+                System.out.println("Choose 1 or 0" + e.getMessage());
+            }
+            return false;
         };
         return getOutputOnIntInput(userPrompt, intUserInputRetriever);
     }
 
+    public Food getMEnuSelection(){
+        int userChose;
+        String userPrompt = "Today's Menu: " + "\n" + menu.toString() + "\n" + "Choose: ";
+
+        IntUserInputRetriever<Food> intUserInputRetriever = selection -> menu.getFood(selection);
+        return getOutputOnIntInput(userPrompt, intUserInputRetriever);
+    }
 
 }

@@ -96,6 +96,17 @@ public class TakeOutSimulator {
             }
             checkoutCustomer(shoppingBag);
     }
+    public void startTakeOutSimulator(){
+        System.out.println("Welcome to my restaurant!");
+        boolean starter = true;
+        while(starter){
+            System.out.println(customer.getName());
+            takeOutPrompt();
+            starter = shouldsimulate();
+        }
+
+
+    }
 
     private void addDelay(int time) {
         try {

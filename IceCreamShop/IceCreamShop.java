@@ -42,9 +42,9 @@ class ShopItems {
 public class IceCreamShop {
 
     public static void main(String[] args) {
-        int orderType = 0;
+        int orderType;
         Scanner input = new Scanner(System.in);
-        int itemCount = 0;
+        int itemCount;
         String itemName = "";
         ShopItems shopItems = new ShopItems();
         ShopItems.NonVegan  nonVegan = shopItems.new NonVegan();
@@ -58,24 +58,24 @@ public class IceCreamShop {
             itemCount = input.nextInt();
 
             switch (orderType) {
-                case 1:
+                case 1 -> {
                     itemName = "ice cream";
-                    nonVegan.increaseCount(orderType,itemCount);
-                    break;
-                case 2:
+                    nonVegan.increaseCount(orderType, itemCount);
+                }
+                case 2 -> {
                     itemName = "shake";
-                    nonVegan.increaseCount(orderType,itemCount);
-                    break;
-                case 3:
+                    nonVegan.increaseCount(orderType, itemCount);
+                }
+                case 3 -> {
                     itemName = "smoothie";
-                    vegan.increaseCount(orderType,itemCount);
-                    break;
-                case 4:
+                    vegan.increaseCount(orderType, itemCount);
+                }
+                case 4 -> {
                     itemName = "slushie";
-                    vegan.increaseCount(orderType,itemCount);
-                    break;
-                default:
-                    break;
+                    vegan.increaseCount(orderType, itemCount);
+                }
+                default -> {
+                }
             }
 
             System.out.println("Adding " + itemCount + " of the item "+ itemName + " to your order!");
@@ -83,8 +83,8 @@ public class IceCreamShop {
             System.out.println("Type a number for the next item in your order:\n1: Ice cream\n2: Shake\n3: Smoothie\n4: Slushie\n");
             orderType = input.nextInt();
         }
-        System.out.println("Thank you for your order today we have sold " + shopItems.totalCount + "orders of sweetness!");
-        System.out.println(nonVegan.totalCount + "items have been ice cream and shakes.");
-        System.out.println(vegan.totalCount + "items have been smoothies and slushies.");
+        System.out.println("Thank you for your order today we have sold " + shopItems.totalCount + " orders of sweetness!");
+        System.out.println(nonVegan.totalCount + " items have been ice cream and shakes.");
+        System.out.println(vegan.totalCount + " items have been smoothies and slushies.");
     }
 }

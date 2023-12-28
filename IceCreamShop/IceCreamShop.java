@@ -48,7 +48,7 @@ public class IceCreamShop {
         String itemName = "";
         ShopItems shopItems = new ShopItems();
         ShopItems.NonVegan  nonVegan = shopItems.new NonVegan();
-        ShopItems.Vegan Vegan = shopItems.new Vegan();
+        ShopItems.Vegan vegan = shopItems.new Vegan();
 
         System.out.println("Hello! Welcome to the ice cream shop. We are ready to take your order. For ice-cream type 1, for shakes type 2, for smoothies type 3, and for slushies type 4. If you are done ordering type 0.");
         orderType = input.nextInt();
@@ -68,11 +68,11 @@ public class IceCreamShop {
                     break;
                 case 3:
                     itemName = "smoothie";
-                    Vegan.increaseCount(orderType,itemCount);
+                    vegan.increaseCount(orderType,itemCount);
                     break;
                 case 4:
                     itemName = "slushie";
-                    Vegan.increaseCount(orderType,itemCount);
+                    vegan.increaseCount(orderType,itemCount);
                     break;
                 default:
                     break;
@@ -83,6 +83,8 @@ public class IceCreamShop {
             System.out.println("Type a number for the next item in your order:\n1: Ice cream\n2: Shake\n3: Smoothie\n4: Slushie\n");
             orderType = input.nextInt();
         }
-        System.out.println("Thank you for your order ");
+        System.out.println("Thank you for your order today we have sold " + shopItems.totalCount + "orders of sweetness!");
+        System.out.println(nonVegan.totalCount + "items have been ice cream and shakes.");
+        System.out.println(vegan.totalCount + "items have been smoothies and slushies.");
     }
 }

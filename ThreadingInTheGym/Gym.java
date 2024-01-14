@@ -30,6 +30,9 @@ public class Gym {
                     });
                 }).collect(Collectors.toList());
 
+        Thread supervisor = createSupervisor(gymMembersRoutines);
+        supervisor.start();
+
         gymMembersRoutines.forEach(Thread::start);
     }
 
@@ -37,7 +40,7 @@ public class Gym {
         Thread supervisor = new Thread(() -> {
             while(true){
                 List<String> runningThreads = threads.stream().filter(Thread::isAlive).map(Thread::getName).toList();
-                System.out.println(Thread.currentThread().getName() + "-" + runningThreads.size() + "people still working out" + runningThreads + "\n");
+                System.out.println(Thread.currentThread().getName() + " - " + runningThreads.size() + " people still working out " + runningThreads + "\n");
                 if(runningThreads.isEmpty()){
                     break;
                 }

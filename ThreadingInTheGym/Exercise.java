@@ -12,11 +12,13 @@ public class Exercise {
 
     // Creates a random exercise
     public Exercise() {
+
         this.machine = MachineType.getRandomEquipment();
         Map<Weight, Integer> weightSet = new HashMap<>();
         weightSet.put(Weight.SMALL_5LBS, 0);
         weightSet.put(Weight.MEDIUM_10LBS, 0);
         weightSet.put(Weight.LARGE_25LBS, 0);
+
         for (int i = 0; i < 10; i++) {
             Weight randPlate = Weight.getRandomWeight();
             int rand = new Random().nextInt(4);

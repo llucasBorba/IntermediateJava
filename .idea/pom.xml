@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dependencies>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.13.1</version> <!-- A versão pode variar, verifique a mais recente -->
+        <scope>test</scope>
+    </dependency>
+</dependencies>

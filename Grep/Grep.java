@@ -12,5 +12,26 @@ public class Grep {
 
     public static void main(String[] args) {
 
+        File file;
+        String fileName;
+        Scanner input;
+        String content = "";
+
+        for(int i = 1; i < 5; i++){
+            fileName = "TestFile" + i + ".txt";
+            try {
+                file = new File(fileName);
+                input = new Scanner(file);
+                while(input.hasNext()){
+                     content = input.nextLine();
+                    System.out.println(content);
+                }
+            }catch (FileNotFoundException e ){
+                System.out.println("File not found " + fileName);
+               e.printStackTrace();
+            }
+
+        }
+
     }
 }

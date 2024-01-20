@@ -28,7 +28,9 @@ public class Grep {
                     Pattern pattern = Pattern.compile("\\d+");
                     Matcher matcher = pattern.matcher(content);
                     if (matcher.find()){
+
                         System.out.println(fileName.substring(48) + " - " + content);
+
                     }
                 }
             }catch (FileNotFoundException e ){
